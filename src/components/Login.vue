@@ -31,10 +31,11 @@ export default {
         }
     },
     created() {
-        this.bg.backgroundImage = 'url(' + require('../assets/imgs/bg0' + new Date().getDay() + '.jpg') + ')'
+        this.bg.backgroundImage = 'url(' + require('../assets/imgs/bg0' + Math.floor(Math.random() * 7) + '.jpg') + ')'
     },
     watch: {
         $route: {
+            // 立即监听
             handler(route) {
                 this.redirect = route.query && route.query.redirect
             },
@@ -66,6 +67,7 @@ export default {
             if (this.account === 'admin' && this.pwd === 'admin') {
                 this.isShowLoading = true
                 // 登陆成功 设置用户信息
+                // localStorage方法是储存本地数据，用于缓存
                 localStorage.setItem('userImg', 'https://avatars3.githubusercontent.com/u/22117876?s=460&v=4')
                 localStorage.setItem('userName', '小明')
                 // 登陆成功 假设这里是后台返回的 token
